@@ -44,5 +44,6 @@ st.pyplot(fig)
 
 cases.sort_values(by='date',  ascending=False, inplace=True)
 
+cases['date'] = cases['date'].dt.strftime("%d-%b")
 
 st.table(cases.reset_index(drop=True))
