@@ -13,7 +13,7 @@ st.title("wszyscy umrzemy")
 
 
 def get_data():
-    lnk = "mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases-lb.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority"
+    lnk = pymongo.MongoClient("mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority")
     client = pymongo.MongoClient(lnk)
     db = client.covidCasesPL
     collection = db.PL
