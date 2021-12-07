@@ -13,8 +13,8 @@ st.title("wszyscy umrzemy")
 
 
 def get_data():
-    lnk = MongoClient("mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority")
-    client = pymongo.MongoClient(lnk)
+    lnk = "mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority"
+    client = MongoClient(lnk)
     collection = client['covidCasesPL']['PL']
     df = pd.DataFrame(list(collection.find({})))
 
