@@ -16,7 +16,7 @@ def get_data():
     lnk = "mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority"
     client = MongoClient(lnk)
     collection = client['covidCasesPL']['PL']
-    df = pd.DataFrame(list(collection.find({})))
+    df = pd.DataFrame(list(collection.find()))
 
     return df
 
