@@ -17,7 +17,7 @@ def get_data():
     client = pymongo.MongoClient(lnk)
     db = client.covidCasesPL
     collection = db.PL
-    df = pd.DataFrame(list(collection.find()))
+    df = pd.DataFrame(list(collection.find({})))
 
     return df
 
