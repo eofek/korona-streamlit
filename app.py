@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import pymongo
+from pymongo import MongoClient
 
 st.title("wszyscy umrzemy")
 
@@ -13,7 +13,7 @@ st.title("wszyscy umrzemy")
 
 
 def get_data():
-    lnk = pymongo.MongoClient("mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority")
+    lnk = MongoClient("mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority")
     client = pymongo.MongoClient(lnk)
     collection = client['covidCasesPL']['PL']
     df = pd.DataFrame(list(collection.find({})))
