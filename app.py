@@ -12,7 +12,6 @@ st.title("wszyscy umrzemy")
 
 
 
-@st.cache(ttl=600)
 def get_data():
     lnk = "mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases-lb.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority"
     client = pymongo.MongoClient(lnk)
