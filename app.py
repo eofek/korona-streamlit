@@ -14,7 +14,7 @@ client = pymongo.MongoClient(**st.secrets["mongo"])
 @st.cache(ttl=600)
 def get_data():
     db = client['covidCasesPL']['PL']
-    items = db.mycollection.find()
+    items = db.find()
     items = list(items)  # make hashable for st.cache
     return items
 
