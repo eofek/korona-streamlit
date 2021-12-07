@@ -9,10 +9,13 @@ st.title("wszyscy umrzemy")
 # st.write(df)
 
 # Initialize connection.
-client = pymongo.MongoClient(**st.secrets["mongo"])
+
+
 
 @st.cache(ttl=600)
 def get_data():
+    lnk = "mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases-lb.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority"
+    client = pymongo.MongoClient(lnk)
     db = client.covidCasesPL
     collection = db.PL
     df = pd.DataFrame(list(collection.find()))
