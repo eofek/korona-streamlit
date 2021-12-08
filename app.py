@@ -26,10 +26,19 @@ def get_data():
     return df
 
 cases = get_data()
-
 cases.sort_values(by='date',  ascending=True, inplace=True)
+cases.reset_index(drop=True, inplace=True)
 
 cases['cases'] = cases.cases.astype(int)
+
+delta = []
+for index, row in cases.iterrows():
+    if index < 7:
+        delta.append(0)
+    else:
+        delta.append(cases.iloc[index]['cases']-cases.iloc[index-7]['cases'])
+cases['delta'] = pd.Series(delta)
+
 
 palette= sns.color_palette('YlOrRd', cases.cases.count())
 fig, axe = plt.subplots(figsize=(16,9))
@@ -42,8 +51,9 @@ axe.xaxis.set_major_locator(ticker.MultipleLocator(10))
 
 st.pyplot(fig)
 
-cases.sort_values(by='date',  ascending=False, inplace=True)
 
+
+cases.sort_values(by='date',  ascending=False, inplace=True)
 cases['date'] = cases['date'].dt.strftime("%d-%b")
 
-st.table(cases.reset_index(drop=True))
+st.table(cases)
