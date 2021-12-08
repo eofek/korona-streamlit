@@ -10,14 +10,6 @@ import matplotlib.ticker as ticker
 
 st.title("wszyscy umrzemy")
 
-# df = pd.read_csv('przypadki.csv')
-#
-# st.write(df)
-
-# Initialize connection.
-
-
-
 def get_data():
     client = MongoClient("mongodb+srv://streamlit:$Upv.AF63u-WARG@covidcases.uh3sr.mongodb.net/covidCasesPL?retryWrites=true&w=majority")
     collection = client['covidCasesPL']['PL']
@@ -39,6 +31,15 @@ for index, row in cases.iterrows():
         delta.append(cases.iloc[index]['cases']-cases.iloc[index-7]['cases'])
 cases['delta'] = pd.Series(delta)
 
+percdelta = []
+for index, row in cases.iterrows():
+    if index < 7:
+        percdelta.append(0)
+    else:
+        print(index, cases.iloc[index]['delta'], np.round((cases.iloc[index]['delta']/cases.iloc[index-7]['cases'])*100, 2) )
+        percdelta.append(np.round((cases.iloc[index]['delta']/cases.iloc[index-7]['cases'])*100, 2))
+
+cases['% change w/w'] = pd.Series(percdelta)
 
 palette= sns.color_palette('YlOrRd', cases.cases.count())
 fig, axe = plt.subplots(figsize=(16,9))
