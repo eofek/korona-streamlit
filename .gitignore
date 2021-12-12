@@ -2,3 +2,8 @@ __pycache__
 .streamlit/secrets.toml
 .ipynb_checkpoints
 .idea/*
+*.ipynb
+korona.iml
+misc.xml
+modules.xml
+profiles_settrings.xml
