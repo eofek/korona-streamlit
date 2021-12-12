@@ -10,10 +10,14 @@ import seaborn as sns
 import datetime
 import matplotlib.ticker as ticker
 
-client = MongoClient(**st.secrets["mongo"])
-
 def get_data():
     client = MongoClient(**st.secrets["mongo"])
+
+    # db = client.mydb
+    # items = db.mycollection.find()
+    # items = list(items)
+
+
     collection = client['covidCasesPL']['PL']
     df = pd.DataFrame(list(collection.find({},{"_id":0})))
 
